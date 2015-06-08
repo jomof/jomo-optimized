@@ -1,7 +1,7 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
-#### 2015-6-3 Reading The Bayesian Bootstrap
+#### 2015-6-8 Reading The Bayesian Bootstrap
 [http://projecteuclid.org/download/pdf_1/euclid.aos/1176345338]
 
 The main cool trick here is to generate a set of n numbers in [0, 1] that add up to 1.0. Here are the steps:
