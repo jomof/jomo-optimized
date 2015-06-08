@@ -1,6 +1,8 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
+![LaTex](http://latex.codecogs.com/gif.latex?\sum_{i=1}^{n}{X_i})
+
 #### 2015-6-8 Reading The Bayesian Bootstrap
 [http://projecteuclid.org/download/pdf_1/euclid.aos/1176345338]
 
