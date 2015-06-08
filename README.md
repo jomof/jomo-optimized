@@ -16,7 +16,7 @@ The main cool trick here is to generate a set of n numbers in [0, 1] that add up
 
 Set N consists of numbers in [0,1] that sum to 1.0. Intuitively, this is similar to creating a random CDF (cumulative distribution function).
 
-Bayesian bootstrapping involves creating many sets N and applying them as weights to each element of the sample population under consideration.
+Bayesian bootstrapping involves creating many sets N and applying them as weights to each element of the sample population under consideration. Interpretation is that N[i] is probability that X[i] is in the bootstrap.
 
 
 #### 2015-6-3 Reading The Practical Implementation of Bayesian Model Selection
