@@ -1,7 +1,7 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
-#### 2015-6-8 Embedding equations
+#### 2015-6-8 Learned how to embedding
 ![x0](http://goo.gl/kePPTV)
 
 ![x1](http://goo.gl/abjSyw)
