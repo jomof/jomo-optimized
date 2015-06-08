@@ -21,8 +21,7 @@ var S : number[] =
     .map(Math.random)
     .sort();
 S[0] = 0.0;
-S[n - 1] = 1.0;
-var N = S.map((_:any, i:number) => S[i+1] - S[i]);
+var N = S.map((_:any, i:number) => (i == n - 1 ? 1.0 : S[i+1]) - S[i]);
 ```
 Set N consists of numbers in [0,1] that sum to 1.0. Intuitively, this is similar to creating a random CDF (cumulative distribution function).
 
