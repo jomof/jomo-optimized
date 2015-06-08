@@ -1,7 +1,9 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
-![x0](http://latex.codecogs.com/gif.latex?\sum_{i=1}^{n}{X_i})
+#### 2015-6-8 Embedding equations
+![x0](http://goo.gl/kePPTV)
+
 ![x1](http://goo.gl/abjSyw)
 
 #### 2015-6-8 Reading The Bayesian Bootstrap
