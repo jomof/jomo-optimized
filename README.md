@@ -2,7 +2,7 @@
 Notes, ramblings and errata from the life of one engineer
 
 ![x0](http://latex.codecogs.com/gif.latex?\sum_{i=1}^{n}{X_i})
-![x1](http://latex.codecogs.com/gif.latex?\begin{pmatrix}&space;a_{11}&space;&&space;\cdots&space;&&space;a_{1n}\\&space;\vdots&space;&&space;\ddots&space;&&space;\vdots\\&space;a_{m1}&space;&&space;\cdots&space;&&space;a_{mn}&space;\end{pmatrix})
+![x1](http://goo.gl/abjSyw)
 
 #### 2015-6-8 Reading The Bayesian Bootstrap
 [http://projecteuclid.org/download/pdf_1/euclid.aos/1176345338]
