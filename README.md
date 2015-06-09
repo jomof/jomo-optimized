@@ -21,12 +21,13 @@ The main cool trick here is to generate a set of n numbers in [0, 1] that add up
 ```typescript
 // Bayesian bootstrap distribution generator in TypeScript
 var n = 100;
-var S : number[] =
-  Array.apply(0, Array(100))
+var seed = Array.apply(0, Array(100));
+var S : number[] = seed
     .map(Math.random)
     .sort();
 S[0] = 0.0;
-var N = S.map((_:any, i:number) => (i == n - 1 ? 1.0 : S[i+1]) - S[i]);
+S.push(1.0);
+var N = seed.map((_:any, i:number) => S[i+1] - S[i]);
 ```
 Set N consists of numbers in [0,1] that sum to 1.0. Intuitively, this is similar to creating a random CDF (cumulative distribution function).
 
