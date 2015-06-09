@@ -1,6 +1,47 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
+#### 2015-6-9 How to Throttle on Client to a Certain QPS
+Uses a control loop to settle at certain sleep rate.
+
+```java
+  // Throttle QPS with Control Loop
+  private static Long longPeriodMillis = null;
+  private static long queries = 0;
+  private static double allowedQps = 20.0;
+  private static double delayMillis = 1000.0 / allowedQps; 
+  
+  @VisibleForTesting
+  public static void throttle() {
+ 
+    synchronized (global) {
+      ++queries;
+      if (longPeriodMillis == null) {
+        longPeriodMillis = System.nanoTime();
+        return;
+      }
+      
+      double longPeriodQps = queries / ((System.nanoTime() - longPeriodMillis) / 1000000000.0);
+      
+      // This creates a feedback loop that will tune to the requested QPS
+      if (longPeriodQps > allowedQps) {
+        delayMillis *= 1.01;
+      } else {
+        delayMillis *= 0.99;
+      }
+     
+      if (delayMillis > 1.0) {
+        System.out.printf("SleptEntity:%s for qps %s\n", delayMillis, longPeriodQps);
+         try {
+          Thread.sleep((long) delayMillis);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+```
+
 #### 2015-6-8 Learned how to embed formulas
 ![x0](http://goo.gl/kePPTV)
 
