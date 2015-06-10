@@ -43,6 +43,8 @@ Uses a control loop to settle at certain sleep rate.
 ```
 
 #### 2015-6-8 Learned how to embed formulas
+Edit them here and get an html link: http://www.codecogs.com/latex/eqneditor.php
+
 ![x0](http://goo.gl/kePPTV)
 
 ![x1](http://goo.gl/abjSyw)
