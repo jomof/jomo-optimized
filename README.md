@@ -20,11 +20,11 @@ function leastSquares(points) {
   var sum = f => points.reduce((s,c) => s + f(c), 0)
   var n = points.length
   var mx = sum(p => p.x) / n
-	var my = sum(p => p.y) / n
-	var covariance = sum(p => (p.x - mx) * (p.y - my))	
-	var variance = sum(p => (p.x - mx) * (p.x - mx))	
-	var m = covariance / variance;
-	return {m : m, b : my - m * mx};
+  var my = sum(p => p.y) / n
+  var covariance = sum(p => (p.x - mx) * (p.y - my))	
+  var variance = sum(p => (p.x - mx) * (p.x - mx))	
+  var m = covariance / variance;
+  return {m : m, b : my - m * mx};
 }
 ``` 
 This is a cool snippet because it also includes the algorithms for variance and covariance.
