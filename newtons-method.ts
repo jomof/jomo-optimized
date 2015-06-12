@@ -12,9 +12,7 @@ function newton(f) {
 	var result = 0;
 	for (var i = 1; i <= 100; i++) {
 		var delta = f(result) / f1(result);
-		if (Math.abs(delta) < epsilon) {
-			return result;
-		}
+		if (Math.abs(delta) < epsilon) return result;
 		result -= delta;
 	}
 	// Didn't converge
