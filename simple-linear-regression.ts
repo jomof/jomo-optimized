@@ -1,21 +1,17 @@
 // simple-linear-regression.ts (by Jomo Fisher)
 function leastSquares(points) {	
-	var sum = points.reduce(
-		(sum, p) => {
-			return {x : sum.x + p.x, y: sum.y+p.y}
-		}, {x : 0, y : 0})
-		
-	var mean = {x : sum.x / points.length, y : sum.y / points.length}
+	var x̄ = points.reduce((sum, p) => sum + p.x, 0) / points.length
+	var ȳ = points.reduce((sum, p) => sum + p.y, 0) / points.length
 
 	var covariance = points.reduce(
-		(sum, p) => sum + (p.x - mean.x) * (p.y - mean.y), 0)
+		(sum, p) => sum + (p.x - x̄) * (p.y - ȳ), 0)
 		
 	var variance = points.reduce(
-		(sum, p) => sum + Math.pow(p.x - mean.x, 2), 0)
+		(sum, p) => sum + Math.pow(p.x - x̄, 2), 0)
 		
 	var m = covariance / variance;
 	
-	return {m : m, b : mean.y - m * mean.x};
+	return {m : m, b : ȳ- m * x̄};
 }
 
 var points : {x:number, y:number}[] =

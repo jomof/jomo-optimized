@@ -35,7 +35,7 @@ function leastSquares(points) {
 	return {m : m, b : mean.y - m * mean.x};
 }
 ``` 
-This is a cool snipped because it include the algorithm for variance and covariance.
+This is a cool snippet because it also includes the algorithms for variance and covariance.
 
 
 #### 2015-6-9 How to Throttle on Client to a Certain QPS
