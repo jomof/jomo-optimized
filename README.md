@@ -8,31 +8,23 @@ Given a line formed by [x1,y1] and [x2,y2] find the value y falling on that line
 
 ```java
   // Java implementation of linear interpolation from two points
-  static double interpolate(double x, double x1, double y1, double x2, double y2) {
+  double interpolate(double x, double x1, double y1, double x2, double y2) {
     return ((y2 - y1) * (x - x1)) / (x2 - x1) + y1;
   }
 ```
 One way to generalize interpolation is through simple least squares regression. The following code for linear regression will degenerate to linear interpolation when there are only two points.
 
 ```typescript
-// simple-linear-regression.ts (by Jomo Fisher)
+// TypeScript implementation of least-squares fit (by Jomo Fisher)
 function leastSquares(points) {	
-	var sum = points.reduce(
-		(sum, p) => {
-			return {x : sum.x + p.x, y: sum.y+p.y}
-		}, {x : 0, y : 0})
-		
-	var mean = {x : sum.x / points.length, y : sum.y / points.length}
-
-	var covariance = points.reduce(
-		(sum, p) => sum + (p.x - mean.x) * (p.y - mean.y), 0)
-		
-	var variance = points.reduce(
-		(sum, p) => sum + Math.pow(p.x - mean.x, 2), 0)
-		
+  var sum = f => points.reduce((s,c) => s + f(c), 0)
+	var n = points.length
+	var mx = sum(p => p.x) / n
+	var my = sum(p => p.y) / n
+	var covariance = sum(p => (p.x - mx) * (p.y - my))	
+	var variance = sum(p => (p.x - mx) * (p.x - mx))	
 	var m = covariance / variance;
-	
-	return {m : m, b : mean.y - m * mean.x};
+	return {m : m, b : my - m * mx};
 }
 ``` 
 This is a cool snippet because it also includes the algorithms for variance and covariance.
