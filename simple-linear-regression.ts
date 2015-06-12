@@ -1,6 +1,6 @@
-// simple-linear-regression.ts (by Jomo Fisher)
+// TypeScript simple-linear-regression.ts (by Jomo Fisher)
 function leastSquares(points) {	
-    var sum = f => points.reduce((s,c)=>s + f(c), 0)
+    var sum = f => points.reduce((s,c) => s + f(c), 0)
 	var n = points.length
 	var mx = sum(p => p.x) / n
 	var my = sum(p => p.y) / n
