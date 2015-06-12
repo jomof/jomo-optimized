@@ -12,7 +12,7 @@ Given a line formed by [x1,y1] and [x2,y2] find the value y falling on that line
     return ((y2 - y1) * (x - x1)) / (x2 - x1) + y1;
   }
 ```
-One way to generalize interpolation is through simple least squares regression. The following code will degenerate to linear interpolation when there are only two points.
+One way to generalize interpolation is through simple least squares regression. The following code for linear regression will degenerate to linear interpolation when there are only two points.
 
 ```typescript
 // simple-linear-regression.ts (by Jomo Fisher)
