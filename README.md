@@ -3,6 +3,7 @@ Notes, ramblings and errata from the life of one engineer
 
 #### 2015-6-9 How to do Linear Interpolation
 From two points.
+
 ![x0](http://goo.gl/bMrUdp)
 
 ```java
