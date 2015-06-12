@@ -18,8 +18,8 @@ One way to generalize interpolation is through simple least squares regression. 
 // TypeScript implementation of least-squares fit (by Jomo Fisher)
 function leastSquares(points) {	
   var sum = f => points.reduce((s,c) => s + f(c), 0)
-	var n = points.length
-	var mx = sum(p => p.x) / n
+  var n = points.length
+  var mx = sum(p => p.x) / n
 	var my = sum(p => p.y) / n
 	var covariance = sum(p => (p.x - mx) * (p.y - my))	
 	var variance = sum(p => (p.x - mx) * (p.x - mx))	
