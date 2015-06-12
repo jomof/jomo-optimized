@@ -2,6 +2,7 @@
 Notes, ramblings and errata from the life of one engineer
 
 #### 2015-6-9 How to do Linear Interpolation
+From two points
 ```java
   static double interpolate(double x, double x1, double y1, double x2, double y2) {
     return ((y2 - y1) * (x - x1)) / (x2 - x1) + y1;
