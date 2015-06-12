@@ -2,7 +2,7 @@
 Notes, ramblings and errata from the life of one engineer
 
 #### 2015-6-9 How to do Linear Interpolation
-From two points.
+Given a line formed by [x1,y1] and [x2,y2] find the value y falling on that line for any given x.
 
 ![x0](http://goo.gl/bMrUdp)
 
