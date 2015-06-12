@@ -17,22 +17,14 @@ One way to generalize interpolation is through simple least squares regression. 
 ```typescript
 // simple-linear-regression.ts (by Jomo Fisher)
 function leastSquares(points) {	
-	var sum = points.reduce(
-		(sum, p) => {
-			return {x : sum.x + p.x, y: sum.y+p.y}
-		}, {x : 0, y : 0})
-		
-	var mean = {x : sum.x / points.length, y : sum.y / points.length}
-
-	var covariance = points.reduce(
-		(sum, p) => sum + (p.x - mean.x) * (p.y - mean.y), 0)
-		
-	var variance = points.reduce(
-		(sum, p) => sum + Math.pow(p.x - mean.x, 2), 0)
-		
+    var sum = f => points.reduce((s,c)=>s + f(c), 0)
+	var n = points.length
+	var mx = sum(p => p.x) / n
+	var my = sum(p => p.y) / n
+	var covariance = sum(p => (p.x - mx) * (p.y - my))	
+	var variance = sum(p => (p.x - mx) * (p.x - mx))	
 	var m = covariance / variance;
-	
-	return {m : m, b : mean.y - m * mean.x};
+	return {m : m, b : my - m * mx};
 }
 ``` 
 This is a cool snippet because it also includes the algorithms for variance and covariance.
