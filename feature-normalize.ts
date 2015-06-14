@@ -1,15 +1,16 @@
 // TypeScript feature normalize. Feature data is in columns.
 // Normalization method is to subtract mean and then divide that by its standard deviation
-function featureNormalize(data : number[][]) {	
-	var reduce = (data, fn) => data.reduce((p, c) => p.map(
-		(_,i) => fn(p[i], c[i])),
-	    Array.apply(0, Array(data[0].length)).map(_ => 0))
-	var map = (data, fn) => data.map(row => row.map(fn))
+function featureNormalize(data : number[][]) {
+	var zeros = Array.apply(0, Array(data[0].length)).map(_ => 0)	
+	var reduceFeatures = (data, fn) => data.reduce((p, c) => p.map(
+		(_,i) => fn(p[i], c[i])), zeros)
+		.map(s => s / data.length)
+	var mapFeatures = (data, fn) => data.map(row => row.map(fn))
 	
-	var mean = reduce(data, (p,c) => p + c).map(s => s / data.length)
-	var zeroed = map(data, (c, i) => c - mean[i])
-	var stddev = reduce(zeroed, (p, c) => p + c * c).map(s => Math.sqrt(s / data.length))
-	return map(zeroed, (c, i) => c / stddev[i])
+	var mean = reduceFeatures(data, (p, c) => p + c)
+	var zeroed = mapFeatures(data, (c, i) => c - mean[i])
+	var stddev = reduceFeatures(zeroed, (p, c) => p + c * c).map(Math.sqrt)
+	return mapFeatures(zeroed, (c, i) => c / stddev[i])
 }
 
 var simple = [[2],[4],[4],[4],[5],[5],[7],[9]]
