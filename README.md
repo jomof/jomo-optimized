@@ -1,7 +1,26 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
-#### 2015-6-11 How to do Linear Interpolation
+#### 2015-6-131 Generate Permutations
+Here's how to generate permutations of an array. The O(n!) nature is evident by the recursion inside a for-loop for decreasing n. There is one swap per iteration. The bit about n % 2 * i can be read as 'i when n is odd and 0 otherwise'.
+
+```typescript
+// TypeScript calls function for each permutation done by Heap's algorithm
+function permute(n, a, f) {
+	if (--n == 0) return f(a)
+	var swap = m => {
+		var hold = a[m]
+		a[m] = a[n]
+		a[n] = hold;	
+	}
+	for(var i = 0; i <= n; ++i) {
+		permute(n, a, f)
+		swap(n % 2 * i)
+	}
+}
+```
+
+#### 2015-6-11 How to do Linear Interpolation (then Least Squares)
 Given a line formed by [x1,y1] and [x2,y2] find the value y falling on that line for any given x.
 
 ![x0](http://goo.gl/bMrUdp)
