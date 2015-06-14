@@ -18,11 +18,9 @@ function featureNormalize(data : number[][]) {
 	    Array.apply(0, Array(data[0].length)).map(_=>0))
 	var map = (data, fn) => data.map(row=>row.map(fn))
 	
-	var mean = reduce(data, (p,c) => p + c)
-		.map(s=>s / data.length)
+	var mean = reduce(data, (p,c) => p + c).map(s=>s / data.length)
 	var zeroed = map(data, (c, i) => c - mean[i]);
-	var stddev = reduce(zeroed, (p, c) => p + c * c)
-		.map(s=>Math.sqrt(s / data.length))
+	var stddev = reduce(zeroed, (p, c) => p + c * c).map(s=>Math.sqrt(s / data.length))
 	return map(zeroed, (c, i)=>c / stddev[i])
 }
 ```
