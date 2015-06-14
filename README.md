@@ -10,22 +10,23 @@ Intuitions:
 - Dividing by standard deviation normalizes scale (and cancels units)
 
 ```typescript
-// TypeScript feature normalize. Feature data is in columns.
-// Normalization method is to subtract mean and then divde that by its standard deviation
 function featureNormalize(data : number[][]) {
 	var row = Array.apply(0, Array(data[0].length)).map(_=>0)
 	
+	var reduce = (data, fn) => data.reduce((p, c) => p.map((_,i) => fn(p[i], c[i])), row)
+	var map = (data, fn) => data.map(row=>row.map(fn))
+	
 	// Sum of each feature
-	var sum = data.reduce((p, c)=>p.map((_,f) => p[f] + c[f]), row)
+	var sum = reduce(data, (p,c) => p + c)
 	
 	// Mean of each feature
 	var mean = sum.map(s=>s / data.length)
 	
 	// Subract mean from each datum
-	var zeroed = data.map(row=>row.map((feature, f)=>feature-mean[f]))	
+	var zeroed = map(data, (c, i) => c - mean[i]);
 	
 	// Sum of squares
-	var squares = zeroed.reduce((p, c)=>p.map((_,f) => p[f] + (c[f] * c[f])), row)	
+	var squares = reduce(zeroed, (p, c) => p + c * c)	
 	
 	// Variance
 	var variance = squares.map(s=>s / data.length)
@@ -34,7 +35,7 @@ function featureNormalize(data : number[][]) {
 	var stddev = variance.map(Math.sqrt)
 	
 	// Divide by standard deviation
-	var normalized = zeroed.map(row=>row.map((feature, f)=>feature/stddev[f]))
+	var normalized = map(zeroed, (c, i)=>c / stddev[i])
 	
 	return normalized
 }
