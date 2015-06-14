@@ -11,7 +11,7 @@ Intuitions:
 
 ```typescript
 // TypeScript feature normalize. Feature data is in columns.
-// Normalization method is to subtract mean and then divde that by its standard deviation
+// by Jomo Fisher
 function featureNormalize(data : number[][]) {	
 	var reduce = (data, fn) => data.reduce((p, c) => p.map(
 		(_,i) => fn(p[i], c[i])),
