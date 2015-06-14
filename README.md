@@ -2,7 +2,7 @@
 Notes, ramblings and errata from the life of one engineer
 
 #### 2015-6-131 Generate Permutations
-Here's how to generate permutations of an array. The O(n!) nature is evident by the recursion inside a for-loop for decreasing n. There is one swap per iteration. The bit about n % 2 * i can be read as 'i when n is odd and 0 if event'.
+Here's how to generate permutations of an array. The O(n!) nature is evident by the recursion inside a for-loop for decreasing n. There is one swap per iteration. The bit about n % 2 * i can be read as 'i when n is odd and 0 otherwise'.
 
 ```typescript
 // TypeScript calls function for each permutation done by Heap's algorithm
