@@ -13,15 +13,15 @@ Intuitions:
 // TypeScript feature normalize. Feature data is in columns.
 // by Jomo Fisher
 function featureNormalize(data : number[][]) {	
-	var reduce = (data, fn) => data.reduce((p, c) => p.map(
+	var reduceFeatures = (data, fn) => data.reduce((p, c) => p.map(
 		(_,i) => fn(p[i], c[i])),
 	    Array.apply(0, Array(data[0].length)).map(_ => 0))
-	var map = (data, fn) => data.map(row => row.map(fn))
+	var mapFeatures = (data, fn) => data.map(row => row.map(fn))
 	
-	var mean = reduce(data, (p,c) => p + c).map(s => s / data.length)
-	var zeroed = map(data, (c, i) => c - mean[i])
-	var stddev = reduce(zeroed, (p, c) => p + c * c).map(s => Math.sqrt(s / data.length))
-	return map(zeroed, (c, i) => c / stddev[i])
+	var mean = reduceFeatures(data, (p,c) => p + c).map(s => s / data.length)
+	var zeroed = mapFeatures(data, (c, i) => c - mean[i])
+	var stddev = reduceFeatures(zeroed, (p, c) => p + c * c).map(s => Math.sqrt(s / data.length))
+	return mapFeatures(zeroed, (c, i) => c / stddev[i])
 }
 ```
 
