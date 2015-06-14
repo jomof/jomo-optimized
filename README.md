@@ -23,7 +23,7 @@ function featureNormalize(data : number[][]) {
 	var mean = sum.map(s=>s / data.length)
 	
 	// Subract mean from each datum
-	var zeroed = map(data, (c, i) => c-mean[i]);
+	var zeroed = map(data, (c, i) => c - mean[i]);
 	
 	// Sum of squares
 	var squares = reduce(zeroed, (p, c) => p + c * c)	
