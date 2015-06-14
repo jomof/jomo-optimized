@@ -38,7 +38,8 @@ function featureNormalize(data : number[][]) {
 	var normalized = map(zeroed, (c, i)=>c / stddev[i])
 	
 	return normalized
-}```
+}
+```
 
 #### 2015-6-13 Generate Permutations
 Here's how to generate permutations of an array. The O(n!) nature is evident by the recursion inside a for-loop for decreasing n. There is one swap per iteration. The bit about n % 2 * i can be read as 'i when n is odd and 0 otherwise'.
