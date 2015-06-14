@@ -1,7 +1,46 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
-#### 2015-6-131 Generate Permutations
+#### 2015-6-13 Feature Normalization
+Various forms of multivariable regression perform much better when features are normalized. One method of normalization is to subtract the mean from each feature datum and then divide the result by standard deviation. This gives a result that is mostly between -2 and 2 with allowance for outliers.
+
+Intuitions:
+- Units are cancelled so the final regression result is also unitless
+- Subtracting mean balances positive and negative
+- Dividing by standard deviation normalizes scale (and cancels units)
+
+```typescript
+// TypeScript feature normalize. Feature data is in columns.
+// Normalization method is to subtract mean and then divde that by its standard deviation
+function featureNormalize(data : number[][]) {
+	var row = Array.apply(0, Array(data[0].length)).map(_=>0)
+	
+	// Sum of each feature
+	var sum = data.reduce((p, c)=>p.map((_,f) => p[f] + c[f]), row)
+	
+	// Mean of each feature
+	var mean = sum.map(s=>s / data.length)
+	
+	// Subract mean from each datum
+	var zeroed = data.map(row=>row.map((feature, f)=>feature-mean[f]))	
+	
+	// Sum of squares
+	var squares = zeroed.reduce((p, c)=>p.map((_,f) => p[f] + (c[f] * c[f])), row)	
+	
+	// Variance
+	var variance = squares.map(s=>s / data.length)
+	
+	// Standard deviation
+	var stddev = variance.map(Math.sqrt)
+	
+	// Divide by standard deviation
+	var normalized = zeroed.map(row=>row.map((feature, f)=>feature/stddev[f]))
+	
+	return normalized
+}
+```
+
+#### 2015-6-13 Generate Permutations
 Here's how to generate permutations of an array. The O(n!) nature is evident by the recursion inside a for-loop for decreasing n. There is one swap per iteration. The bit about n % 2 * i can be read as 'i when n is odd and 0 otherwise'.
 
 ```typescript
