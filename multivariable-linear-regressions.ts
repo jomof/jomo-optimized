@@ -23,11 +23,13 @@ function regress(training : number[][], yindex : number) : number[] {
 	var h = (xi) => Θ.reduce((p, c, j) => p += c * xi(j))	
 	var α = 0.01
 	
-	for(var i = 0; i<10000; ++i) {
+	for(var i = 0; i<50000; ++i) {
 		Θ = Θ.map((Θj, j)=>
 			Θj - (α/m) * sum(i=>(h(x(i)) - y(i)) * x(i)(j)))
+	console.log(Θ)
+		var err = sum(i=>Math.pow(h(x(i)) - y(i), 2))
+		console.log(err)
 	}
-	 
 	console.log(Θ)	
 	return null;	
 }
