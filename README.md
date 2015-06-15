@@ -10,34 +10,19 @@ Intuitions:
 - Dividing by standard deviation normalizes scale (and cancels units)
 
 ```typescript
+// TypeScript feature normalize. Feature data is in columns.
+// by Jomo Fisher
 function featureNormalize(data : number[][]) {
-	var row = Array.apply(0, Array(data[0].length)).map(_=>0)
+	var zeros = Array.apply(0, Array(data[0].length)).map(_ => 0)	
+	var reduceFeatures = (data, fn) => data.reduce((p, c) => p.map(
+		(_,i) => fn(p[i], c[i])), zeros)
+		.map(s => s / data.length)
+	var mapFeatures = (data, fn) => data.map(row => row.map(fn))
 	
-	var reduce = (data, fn) => data.reduce((p, c) => p.map((_,i) => fn(p[i], c[i])), row)
-	var map = (data, fn) => data.map(row=>row.map(fn))
-	
-	// Sum of each feature
-	var sum = reduce(data, (p,c) => p + c)
-	
-	// Mean of each feature
-	var mean = sum.map(s=>s / data.length)
-	
-	// Subract mean from each datum
-	var zeroed = map(data, (c, i) => c - mean[i]);
-	
-	// Sum of squares
-	var squares = reduce(zeroed, (p, c) => p + c * c)	
-	
-	// Variance
-	var variance = squares.map(s=>s / data.length)
-	
-	// Standard deviation
-	var stddev = variance.map(Math.sqrt)
-	
-	// Divide by standard deviation
-	var normalized = map(zeroed, (c, i)=>c / stddev[i])
-	
-	return normalized
+	var mean = reduceFeatures(data, (p, c) => p + c)
+	var zeroed = mapFeatures(data, (c, i) => c - mean[i])
+	var stddev = reduceFeatures(zeroed, (p, c) => p + c * c).map(Math.sqrt)
+	return mapFeatures(zeroed, (c, i) => c / stddev[i])
 }
 ```
 
