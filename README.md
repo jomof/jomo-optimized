@@ -1,6 +1,43 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
+#### 2015-6-14 Multivariable Linear Regression using Gradient Descent
+Simple multivariable linear regression in type script.
+- y is the desired output
+- x is the input features (one feature type per column)
+- μ are the means of features
+- σ are the standard deviations of features
+- Θ is the set of parameters to the model. This is what is trained.
+- α is the update scale
+- h is the training hypothesis
+The return value of the linear() function is a function that can be called to execute the model against the trained parameters.
+
+Intuitions:
+- Training data with different units need to be normalized
+- Set up a system of equations to minimize (a cost function)
+- Can use gradient descent to minimize iteratively
+- Multivariable linear regression is a generalization of least squares fit which is a generalization of interpolation
+
+```typescript
+// TypeScript multivariable linear regression using gradient descent
+// by Jomo Fisher
+	var [xnorm, μ, σ] = normalize(x)
+	x = xnorm.map(a=>[1].concat(a))
+
+	var m = x[0].length
+	var sum = f => y.reduce((s,_,i) => s + f(i), 0)
+	var Θ = range(m, _ => 0)
+	var h = i => Θ.reduce((p, c, j) => p += c * x[i][j], 0)
+	var α = 0.01 / m
+	
+	range(iterations, _ => 
+		Θ = Θ.map((Θj, j)=> 
+			Θj - α * sum(i=>(h(i) - y[i]) * x[i][j])))
+			
+	return (...arr) => arr.reduce((p, c, j) => 
+		p + Θ[j + 1] * (c - μ[j]) / σ[j], Θ[0])
+```
+
 #### 2015-6-14 Feature Normalization
 Various forms of multivariable regression perform much better when features are normalized. One method of normalization is to subtract the mean from each feature datum and then divide the result by standard deviation. This gives a result that is mostly between -2 and 2 with allowance for outliers.
 
@@ -12,20 +49,28 @@ Intuitions:
 ```typescript
 // TypeScript feature normalize. Feature data is in columns.
 // by Jomo Fisher
-function featureNormalize(data : number[][]) {
-	var zeros = Array.apply(0, Array(data[0].length)).map(_ => 0)	
-	var reduceFeatures = (data, fn) => data.reduce((p, c) => p.map(
+function normalize(data : number[][]) {
+	var zeros = range(data[0].length, _ => 0)	
+	var reduce = (data, fn) => data.reduce((p, c) => p.map(
 		(_,i) => fn(p[i], c[i])), zeros)
 		.map(s => s / data.length)
-	var mapFeatures = (data, fn) => data.map(row => row.map(fn))
+	var map = (data, fn) => data.map(row => row.map(fn))
 	
-	var mean = reduceFeatures(data, (p, c) => p + c)
-	var zeroed = mapFeatures(data, (c, i) => c - mean[i])
-	var stddev = reduceFeatures(zeroed, (p, c) => p + c * c).map(Math.sqrt)
-	return mapFeatures(zeroed, (c, i) => c / stddev[i])
+	var μ = reduce(data, (p, c) => p + c)
+	var zeroed = map(data, (c, i) => c - μ[i])
+	var σ = reduce(zeroed, (p, c) => p + c * c).map(Math.sqrt)
+	return [map(zeroed, (c, i) => c == 0 ? 0 : c / σ[i]), μ, σ]
 }
 ```
 
+#### 2015-6-13.1 Range function
+This range function is handy for writing concise TypeScript. It generates a dense array of size n and calls a function on each element.
+
+```typescript 
+function range(high, fn) {
+	return Array.apply(0, Array(high)).map((_,i)=>fn(i))
+}
+```
 #### 2015-6-13 Generate Permutations
 Here's how to generate permutations of an array. The O(n!) nature is evident by the recursion inside a for-loop for decreasing n. There is one swap per iteration. The bit about n % 2 * i can be read as 'i when n is odd and 0 otherwise'.
 
