@@ -12,6 +12,12 @@ Simple multivariable linear regression in type script.
 - h is the training hypothesis
 The return value of the linear() function is a function that can be called to execute the model against the trained parameters.
 
+Intuitions:
+- Training data with different units need to be normalized
+- Set up a system of equations to minimize (a cost function)
+- Can use gradient descent to minimize iteratively
+- Multivariable linear regression is a generalization of least squares fit which is a generalization of interpolation
+
 ```typescript
 // TypeScript multivariable linear regression using gradient descent
 // by Jomo Fisher
