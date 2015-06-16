@@ -9,6 +9,7 @@ Simple multivariable linear regression in type script.
 - σ are the standard deviations of features
 - Θ is the set of parameters to the model. This is what is trained.
 - α is the update scale
+- h is the training hypothesis
 The return value of the linear() function is a function that can be called to execute the model against the trained parameters.
 
 ```typescript
