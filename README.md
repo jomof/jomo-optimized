@@ -21,6 +21,7 @@ Intuitions:
 ```typescript
 // TypeScript multivariable linear regression using gradient descent
 // by Jomo Fisher
+function linear(y : number[], x : number[][], iterations : number) {
 	var [xnorm, μ, σ] = normalize(x)
 	x = xnorm.map(a=>[1].concat(a))
 
@@ -36,6 +37,7 @@ Intuitions:
 			
 	return (...arr) => arr.reduce((p, c, j) => 
 		p + Θ[j + 1] * (c - μ[j]) / σ[j], Θ[0])
+}
 ```
 
 #### 2015-6-14 Feature Normalization
