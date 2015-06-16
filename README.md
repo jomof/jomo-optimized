@@ -1,6 +1,37 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
+#### 2015-6-14 Multivariable Linear Regression using Gradient Descent
+Simple multivariable linear regression in type script.
+- y is the desired output
+- x is the input features (one feature type per column)
+- μ are the means of features
+- σ are the standard deviations of features
+- Θ is the set of parameters to the model. This is what is trained.
+- α is the update scale
+The return value of the linear() function is a function that can be called to execute the model against the trained parameters.
+
+```typescript
+// TypeScript multivariable linear regression using gradient descent
+// by Jomo Fisher
+function linear(y : number[], x : number[][], iterations : number) {
+	var [xnorm, μ, σ] = normalize(x)
+	x = xnorm.map(a=>[1].concat(a))
+
+	var sum = f => y.reduce((s,_,i) => s + f(i), 0)
+	var Θ = x[0].map(_ => 0)
+	var h = i => Θ.reduce((p, c, j) => p += c * x[i][j], 0)
+	var α = 0.01 / x.length
+	
+	for(var _ = 0; _<iterations; ++_) {
+		Θ = Θ.map((Θj, j)=> 
+			Θj - α * sum(i=>(h(i) - y[i]) * x[i][j]))	
+	}
+
+	return (...arr) => arr.reduce((p, c, j) => 
+		p + Θ[j + 1] * (c - μ[j]) / σ[j], Θ[0])
+}
+```
 #### 2015-6-14 Feature Normalization
 Various forms of multivariable regression perform much better when features are normalized. One method of normalization is to subtract the mean from each feature datum and then divide the result by standard deviation. This gives a result that is mostly between -2 and 2 with allowance for outliers.
 
