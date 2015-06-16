@@ -1,6 +1,10 @@
 
+function range(high, fn) {
+	return Array.apply(0, Array(high)).map((_,i)=>fn(i))
+}
+
 function normalize(data : number[][]) {
-	var zeros = Array.apply(0, Array(data[0].length)).map(_ => 0)	
+	var zeros = range(data[0].length, _ => 0)	
 	var reduce = (data, fn) => data.reduce((p, c) => p.map(
 		(_,i) => fn(p[i], c[i])), zeros)
 		.map(s => s / data.length)
@@ -12,23 +16,22 @@ function normalize(data : number[][]) {
 	return [map(zeroed, (c, i) => c == 0 ? 0 : c / σ[i]), μ, σ]
 }
 
-
 // TypeScript multivariable linear regression using gradient descent
 // by Jomo Fisher
 function linear(y : number[], x : number[][], iterations : number) {
 	var [xnorm, μ, σ] = normalize(x)
 	x = xnorm.map(a=>[1].concat(a))
 
+	var m = x[0].length
 	var sum = f => y.reduce((s,_,i) => s + f(i), 0)
-	var Θ = x[0].map(_ => 0)
+	var Θ = range(m, _ => 0)
 	var h = i => Θ.reduce((p, c, j) => p += c * x[i][j], 0)
-	var α = 0.01 / x.length
+	var α = 0.01 / m
 	
-	for(var _ = 0; _<iterations; ++_) {
+	range(iterations, _ => 
 		Θ = Θ.map((Θj, j)=> 
-			Θj - α * sum(i=>(h(i) - y[i]) * x[i][j]))	
-	}
-
+			Θj - α * sum(i=>(h(i) - y[i]) * x[i][j])))
+			
 	return (...arr) => arr.reduce((p, c, j) => 
 		p + Θ[j + 1] * (c - μ[j]) / σ[j], Θ[0])
 }
