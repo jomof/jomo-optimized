@@ -2,7 +2,11 @@
 Notes, ramblings and errata from the life of one engineer
 
 #### 2015-6-19.1 Multivariable Logistic Regression
-I showed linear regression in TypeScript a few days ago. Logistic regressions is very similar, all that is required is a transformation of the hypothesis equation to 1/exp(-z) where z is the old linear expression. The result is a number in [0,1]. Logistic regression can be viewed as a single neuron in an artificial neural network.
+I showed linear regression in TypeScript a few days ago. Logistic regressions is very similar, all that is required is a transformation of the hypothesis equation to 1/(1 + exp(-z)) where z is the old linear expression. The result is a number in [0,1]. Logistic regression can be viewed as a single neuron in an artificial neural network.
+
+Intuitions:
+- The new hypothesis function is a sigmoid. It squashes the answer into a range.
+- Not all hypothesis functions have gradient descent solutions that work in the same form
 
 ```typescript
 / TypeScript multivariable logistic regression using gradient descent
@@ -15,15 +19,15 @@ function logistic(y : number[], x : number[][], iterations : number) {
 	var m = x[0].length
 	var sum = f => y.reduce((s,_,i) => s + f(i), 0)
 	var Θ = range(m, _ => 0)
-	var h = i => 1 / Math.exp(-Θ.reduce((p, c, j) => p += c * x[i][j], 0))
+	var h = i => 1 / (1 + Math.exp(-Θ.reduce((p, c, j) => p += c * x[i][j], 0)))
 	var α = 0.01 / m
 	
 	range(iterations, _ => 
 		Θ = Θ.map((Θj, j)=> 
 			Θj - α * sum(i=>(h(i) - y[i]) * x[i][j])))
 			
-	return (...arr) => 1 / Math.exp(-arr.reduce((p, c, j) => 
-		p + Θ[j + 1] * (c - μ[j]) / σ[j], Θ[0]))
+	return (...arr) => 1 / (1 + Math.exp(-arr.reduce((p, c, j) => 
+		p + Θ[j + 1] * (c - μ[j]) / σ[j], Θ[0])))
 }
 ```
 
