@@ -1,6 +1,33 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
+#### 2015-6-19 Converting from Binary to Gray Code
+There is a simple conversion from binary to gray code.
+```typescript
+function graycode(n) {
+	return n ^ (n >> 1)
+}
+```
+
+```text
+0 => 0
+1 => 1
+2 => 3
+3 => 2
+4 => 6
+5 => 7
+6 => 5
+7 => 4
+8 => 12
+9 => 13
+10 => 15
+11 => 14
+12 => 10
+13 => 11
+14 => 9
+15 => 8
+```
+
 #### 2015-6-14 Multivariable Linear Regression using Gradient Descent
 Simple multivariable linear regression in type script.
 - y is the desired output
@@ -21,6 +48,7 @@ Intuitions:
 ```typescript
 // TypeScript multivariable linear regression using gradient descent
 // by Jomo Fisher
+function linear(y : number[], x : number[][], iterations : number) {
 	var [xnorm, μ, σ] = normalize(x)
 	x = xnorm.map(a=>[1].concat(a))
 
@@ -36,6 +64,7 @@ Intuitions:
 			
 	return (...arr) => arr.reduce((p, c, j) => 
 		p + Θ[j + 1] * (c - μ[j]) / σ[j], Θ[0])
+}
 ```
 
 #### 2015-6-14 Feature Normalization
