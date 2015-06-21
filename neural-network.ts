@@ -38,7 +38,6 @@ function feedforward(net : Network, a: number[][]) {
          .map(sub=>sub.map(sigmoid)))
   return a;
 }
-//
 
 //console.log(matrix(4, 3, (i, j) => i))
 var net = network([6, 5, 4, 3, 2, 1])
