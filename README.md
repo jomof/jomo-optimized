@@ -13,7 +13,8 @@ function vectorT(high, fn) : any[] {
 }
 ```
 For example vector function works like this,
-![x0](goo.gl/VDsFWR)
+![x0](http://goo.gl/VDsFWR)
+
 this is the javacript output
 [ [ 0 ], [ 2 ], [ 4 ], [ 6 ], [ 8 ] ]
 
