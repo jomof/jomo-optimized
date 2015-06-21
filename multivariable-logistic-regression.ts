@@ -1,20 +1,5 @@
-
-function range(high, fn) {
-	return Array.apply(0, Array(high)).map((_,i)=>fn(i))
-}
-
-function normalize(data : number[][]) {
-	var zeros = range(data[0].length, _ => 0)	
-	var reduce = (data, fn) => data.reduce((p, c) => p.map(
-		(_,i) => fn(p[i], c[i])), zeros)
-		.map(s => s / data.length)
-	var map = (data, fn) => data.map(row => row.map(fn))
-	
-	var μ = reduce(data, (p, c) => p + c)
-	var zeroed = map(data, (c, i) => c - μ[i])
-	var σ = reduce(zeroed, (p, c) => p + c * c).map(Math.sqrt)
-	return [map(zeroed, (c, i) => c == 0 ? 0 : c / σ[i]), μ, σ]
-}
+/// <reference path="normalize.ts"/>
+/// <reference path="sigmoid.ts"/>
 
 // TypeScript multivariable logistic regression using gradient descent
 // - y is 0 or 1
@@ -26,15 +11,15 @@ function logistic(y : number[], x : number[][], iterations : number) {
 	var m = x[0].length
 	var sum = f => y.reduce((s,_,i) => s + f(i), 0)
 	var Θ = range(m, _ => 0)
-	var h = i => 1 / (1 + Math.exp(-Θ.reduce((p, c, j) => p += c * x[i][j], 0)))
+	var h = i => sigmoid(Θ.reduce((p, c, j) => p += c * x[i][j], 0))
 	var α = 0.01 / m
 	
 	range(iterations, _ => 
 		Θ = Θ.map((Θj, j)=> 
 			Θj - α * sum(i=>(h(i) - y[i]) * x[i][j])))
 			
-	return (...arr) => 1 / (1 + Math.exp(-arr.reduce((p, c, j) => 
-		p + Θ[j + 1] * (c - μ[j]) / σ[j], Θ[0])))
+	return (...arr) => sigmoid(arr.reduce(
+		(p, c, j) => p + Θ[j + 1] * (c - μ[j]) / σ[j], Θ[0]))
 }
 
 // Training data: square feet, number of bedrooms, price

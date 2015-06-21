@@ -6,15 +6,15 @@
 /// <reference path="plus.ts"/>
 /// <reference path="sigmoid.ts"/>
     
-class Network {
+class network {
   n : number;
   s : number[];
   b : number[][][];
   w : number[][][];  
 }
 
-function network(sizes:number[]) {
-  var result = new Network()
+function random(sizes:number[]) {
+  var result = new network()
   result.s = sizes
   result.n = sizes.length
   result.b = range(sizes.length - 1, i=>vector(sizes[i], Math.random))
@@ -23,7 +23,7 @@ function network(sizes:number[]) {
 }
 
 function simple() {
-  var result = new Network()
+  var result = new network()
   var sizes = [2, 1]
   result.s = sizes
   result.n = sizes.length
@@ -32,7 +32,7 @@ function simple() {
   return result
 }
 
-function feedforward(net : Network, a: number[][]) {
+function feedforward(net : network, a: number[][]) {
   vector(net.n - 1, i=>
     a = plus(dot(net.w[i], a), net.b[i])
          .map(sub=>sub.map(sigmoid)))
@@ -40,9 +40,9 @@ function feedforward(net : Network, a: number[][]) {
 }
 
 //console.log(matrix(4, 3, (i, j) => i))
-var net = network([6, 5, 4, 3, 2, 1])
+var net = random([6, 5, 4, 3, 2, 1])
 //var net = simple()  
-var a = vector(net.s[0], _=> 1)
+//var a = vector(net.s[0], _=> 1)
 //console.log(plus(dot(net.w[0], a), net.b[0]))
 console.log(feedforward(net, vector(net.s[0], _=> 1)))
 
