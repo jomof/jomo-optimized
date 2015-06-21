@@ -32,6 +32,18 @@ Javacript output: [ [ 0, 2, 4, 6, 8 ] ]
 
 Javascript output: [ [ 0, 0, 0 ], [ 1, 1, 1 ], [ 2, 2, 2 ], [ 3, 3, 3 ] ]
 
+Here is matrix dot product in TypeScript. It requires the 'range' function defined earlier.
+```typescript
+// TypeScript matrix dot product
+// by Jomo Fisher
+function dot(a:number[][], b:number[][]) : number[][] {
+  console.assert(a[0].length == b.length, "%s wrong dimension for %s", a, b)
+  return matrix(a.length, b[0].length, 
+    (i, j) => range(a[0].length, k => a[i][k] * b[k][j])
+      .reduce((p, c)=> p + c, 0))
+}
+```
+
 #### 2015-6-19.1 Multivariable Logistic Regression
 I showed linear regression in TypeScript a few days ago. Logistic regressions is very similar, all that is required is a transformation of the hypothesis equation to 1/(1 + exp(-z)) where z is the old linear expression. The result is a number in [0,1]. Logistic regression can be viewed as a single neuron in an artificial neural network.
 
