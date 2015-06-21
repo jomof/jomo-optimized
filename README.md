@@ -16,13 +16,13 @@ For example vector function works like this,
 
 ![x0](http://goo.gl/VDsFWR)
 
-this is the javacript output: [ [ 0 ], [ 2 ], [ 4 ], [ 6 ], [ 8 ] ]
+This is the javacript output: [ [ 0 ], [ 2 ], [ 4 ], [ 6 ], [ 8 ] ]
 
 The vectort function works like this,
 
 ![x1](http://goo.gl/VkFXgt)
 
-this is the javacript output: [ 0, 2, 4, 6, 8 ]
+This is the javacript output: [ 0, 2, 4, 6, 8 ]
 
 
 
