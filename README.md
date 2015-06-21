@@ -1,6 +1,26 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
+#### 2015-6-21 Some Matrix and Vector Functions
+Here is a function to create a vector and another to create a transposed vector in TypeScript
+```typescript
+function vector(high, fn) : any[] {
+    return Array.apply(0, Array(high)).map((_,i)=>[fn(i)])
+}
+
+function vectorT(high, fn) : any[] {
+    return Array.apply(0, Array(high)).map((_,i)=>fn(i))
+}
+```
+For example
+[goo.gl/VDsFWR]
+[ [ 0 ], [ 2 ], [ 4 ], [ 6 ], [ 8 ] ]
+
+
+
+
+
+
 #### 2015-6-19.1 Multivariable Logistic Regression
 I showed linear regression in TypeScript a few days ago. Logistic regressions is very similar, all that is required is a transformation of the hypothesis equation to 1/(1 + exp(-z)) where z is the old linear expression. The result is a number in [0,1]. Logistic regression can be viewed as a single neuron in an artificial neural network.
 
@@ -218,6 +238,7 @@ Uses a control loop to settle at certain sleep rate.
     }
   }
 ```
+
 
 #### 2015-6-8 Learned how to embed formulas
 Edit them here and get an html link: http://www.codecogs.com/latex/eqneditor.php
