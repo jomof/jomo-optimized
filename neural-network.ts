@@ -1,25 +1,10 @@
-function range(high, fn) {
-	return Array.apply(0, Array(high)).map((_,i)=>fn(i))
-}
-
-function matrix(height, width, fn) : number[][] {
-  return range(height,
-    i=>range(width,
-      j=> fn(i, j)))
-}
-
-function vector(height, fn) : number[][] {
-    return matrix(height, 1, (i,j) => fn(i))
-}
-
-function vectort(width, fn) : number[][] {
-    return matrix(1, width, (i,j) => fn(j))
-}
-
-
-function sigmoid(z) {
-    return 1.0/(1.0+Math.exp(-z))
-}
+/// <reference path="range.ts"/>
+/// <reference path="matrix.ts"/>
+/// <reference path="vector.ts"/>
+/// <reference path="vectort.ts"/>
+/// <reference path="dot.ts"/>
+/// <reference path="plus.ts"/>
+/// <reference path="sigmoid.ts"/>
     
 class Network {
   n : number;
@@ -47,24 +32,10 @@ function simple() {
   return result
 }
 
-function dot(a:number[][], b:number[][]) : number[][] {
-  console.assert(a[0].length == b.length, "%s wrong dimension for %s", a, b)
-  return matrix(a.length, b[0].length, (i, j)=> 
-    range(a[0].length, k => a[i][k] * b[k][j])
-      .reduce((p, c)=> p + c, 0))
-}
-
-
-function plus(a:number[][], b:number[][]) {
-  return matrix(a.length, a[0].length,
-   (i,j) => a[i][j] + b[i][j])
-}
-
 function feedforward(net : Network, a: number[][]) {
   vector(net.n - 1, i=>
     a = plus(dot(net.w[i], a), net.b[i])
-         .map(sub=>sub.map(sigmoid))
-          )
+         .map(sub=>sub.map(sigmoid)))
   return a;
 }
 //
