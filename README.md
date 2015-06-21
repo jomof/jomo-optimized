@@ -12,8 +12,9 @@ function vectorT(high, fn) : any[] {
     return Array.apply(0, Array(high)).map((_,i)=>fn(i))
 }
 ```
-For example
-[goo.gl/VDsFWR]
+For example vector function works like this,
+![x0](goo.gl/VDsFWR)
+this is the javacript output
 [ [ 0 ], [ 2 ], [ 4 ], [ 6 ], [ 8 ] ]
 
 
