@@ -1,4 +1,5 @@
 /// <reference path="normalize.ts"/>
+/// <reference path="sum.ts"/>
 /// <reference path="sigmoid.ts"/>
 
 // TypeScript multivariable logistic regression using gradient descent
@@ -9,17 +10,16 @@ function logistic(y : number[], x : number[][], iterations : number) {
 	x = xnorm.map(a=>[1].concat(a))
 
 	var m = x[0].length
-	var sum = f => y.reduce((s,_,i) => s + f(i), 0)
 	var Θ = range(m, _ => 0)
-	var h = i => sigmoid(Θ.reduce((p, c, j) => p += c * x[i][j], 0))
+	var h = i => sigmoid(sum(Θ, (c, j) => c * x[i][j]))
 	var α = 0.01 / m
 	
 	range(iterations, _ => 
 		Θ = Θ.map((Θj, j)=> 
-			Θj - α * sum(i=>(h(i) - y[i]) * x[i][j])))
+			Θj - α * sum(y, (yi,i)=>(h(i) - yi) * x[i][j])))
 			
-	return (...arr) => sigmoid(arr.reduce(
-		(p, c, j) => p + Θ[j + 1] * (c - μ[j]) / σ[j], Θ[0]))
+	return (...arr) => sigmoid(
+		Θ[0] + sum(arr, (c, j) => Θ[j + 1] * (c - μ[j]) / σ[j]))
 }
 
 // Training data: square feet, number of bedrooms, price
