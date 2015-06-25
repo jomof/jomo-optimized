@@ -14,7 +14,8 @@
 /// <reference path="mapmatrix.ts"/>
 /// <reference path="zeromatrix.ts"/>
 /// <reference path="normalize.ts"/>
-  
+declare function require(name:string);
+
 class network {
   n : number;
   s : number[];
@@ -152,10 +153,11 @@ function updatebatch(
 
 function sgd(
   net : network, 
-  trainingData: [number[], number[]][], 
+  trainingData: [number[][], number[][]][], 
   epochs : number, 
   miniBatchSize : number, 
-  eta, testData) {
+  eta,
+  testData) {
   //  if test_data: n_test = len(test_data)
   var n = trainingData.length
   range(epochs, epoch => {
@@ -170,7 +172,7 @@ function sgd(
 //                print "Epoch {0} complete".format(j)
 }
 //console.log(matrix(4, 3, (i, j) => i))
-var net = random([2, 1])
+var net = random([1])
 //console.log(backprop(net, vector(net.s[0], _=> 1), vector(net.s[net.s.length - 1], _=> 1))[0])
 //console.log(net.b)
 //console.log(net.w)
@@ -188,17 +190,31 @@ var housing = [[2104,3,399900],[1600,3,329900],[2400,3,369000],[1416,2,232000],[
 
 
 var [nhouse, _, _] = normalize(housing)
-var inputs : number[][][]= nhouse.map(a=>[[a[0]], [a[1]]])
+var inputs : number[][][]= nhouse.map(a=>[
+  [a[0]],
+  [a[1]],
+  [a[0] * a[1]],
+  [a[0] * a[0]],
+  [a[1] * a[1]],
+  
+  [a[0] * a[0] * a[1]],
+  [a[0] * a[0] * a[0]],
+  [a[0] * a[1] * a[1]],
+  
+  [a[1] * a[0] * a[1]],
+  [a[1] * a[0] * a[0]],
+  [a[1] * a[1] * a[1]],
+  ])
 var outputs = housing.map(a=>[a[2] > 400000 ? [1] : [0]])
 
-var training : [number[][], number[][]][] = zip(inputs, outputs)
-
+//var training : [number[][], number[][]][] = zip(inputs, outputs)
+var training : [number[][], number[][]][] = [[[[1]],[[0]]]]
 
 
 console.log(net.w)
 console.log(net.b)
-range(100000, _=>
-  updatebatch(net, training, 1))
+sgd(net, training, 8000, 1, 1, null)
+//  updatebatch(net, training, 1))
 console.log(net.w)
 console.log(net.b)
 
@@ -211,7 +227,7 @@ range(housing.length, i=>{
     ++wrong
   }
   
-  console.log("%s=>%s", f, outputs[i][0][0])
+//  console.log("%s=>%s", f, outputs[i][0][0])
 })
 
 console.log("right %s, wrong %s", right, wrong)

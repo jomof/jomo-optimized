@@ -2,5 +2,5 @@
 function matrix(height, width, fn) : number[][] {
   return range(height,
     i=>range(width,
-      j=> fn(i, j)))
+      j=> Number(fn(i, j))))
 }
