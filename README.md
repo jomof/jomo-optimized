@@ -1,6 +1,10 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
+
+#### 2019-1-3 Some Matrix and Vector Functions
+![Alt Text](120-1.h5.gif)
+
 #### 2015-6-21 Some Matrix and Vector Functions
 Here is a function to create a vector and another to create a transposed vector in TypeScript
 ```typescript
