@@ -38,9 +38,14 @@ _- uploaded by Icez at English Wikipedia, Public Domain_
 
 Each time you review the material the forgetting curve gets more shallow until eventually it will decay slowly enough to last the rest of your life. 
 
-### A Different Model of Forgetting
-> All models are wrong; some models are useful
-_-George Box, 1976_
+### Quirks and Rough Edges
+> All models are wrong; some models are useful.
+> -George Box, 1976
+After more than a year with Wanikani I had become familiar with it's quirks and rough edges. 
+- Once it became convinced I had learned ("Burned") something completely it would stop quizzing me altogether. However, there were some that I knew I was going to forget later. 
+- On the other hand, I noticed sometimes when I was really bad on a particular case it would seem to give up. But I would have preferred to be quizzed more often so that I had a better chance of learning.
+
+Furthermo
 
 
 #### 2015-6-21 Some Matrix and Vector Functions
