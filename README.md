@@ -64,6 +64,8 @@ Instead, I tried this as the input to the model:
 
 ![Raw Data](kanji_quiz_inputs.gif)
 
+Where the output trained for is success[n].
+
 
 #### 2015-6-21 Some Matrix and Vector Functions
 Here is a function to create a vector and another to create a transposed vector in TypeScript
