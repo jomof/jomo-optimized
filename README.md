@@ -26,7 +26,7 @@ I've used Wanikani for more than a year and have learned nearly 1000 kanji to va
 ### Spaced Repetition System (SRS)
 After a while I became curious about how Wanikani worked under the covers. 
 
-I could tell the system was trying to figure out some kind of good order. It often didn't quiz me on kanji that I knew pretty well and it quizzed me more often on the kanji that I struggled most with. If I struggled too much, it also seemed to give up on a particular kanji for a while and return to it later.
+I could tell the system was trying to figure out some kind of good order. It often didn't quiz me on kanji that I knew pretty well and it quizzed me more often on the kanji that I struggled most with. 
 
 How does Wanikani decide which kanji to test me on next? It is optimal in some way? 
 
