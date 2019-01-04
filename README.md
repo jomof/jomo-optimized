@@ -3,7 +3,11 @@ Notes, ramblings and errata from the life of one engineer
 
 
 ## 2019-1-3 Machine Learning for Self Reflection
-I study Japanese as a hobby. I'm not good at it but it makes me happy and I find it relaxing. Over the recent holiday this hobby suddenly overlapped with my interest in machine learning. And that overlap lead to this graphic which I will explain further down:
+I study Japanese as a hobby. I'm not good at it but it makes me happy and I find it relaxing. Over the recent holiday this hobby suddenly overlapped with my interest in machine learning when I realized ML can be used to model and visualize my own mental processeses. The result is a kind of algorithmic introspection. 
+
+> The result is a kind of algorithmic introspection. 
+
+This graph, which I explain below, shows a neural network as it learns to predict when I will forget particular facts I've learned about Japanese.
 
 ![Wanikani](120-1.h5.gif)
 
