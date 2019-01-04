@@ -10,13 +10,12 @@ I study Japanese as a hobby. I'm not good at it but it makes me happy and I find
 ##### The Joy of Kanji
 Part of learning Japanese is the daunting task of memorizing the meanings of 2136 commonly used logographic characters known as jōyō kanji (常用漢字). For example,
 
-> 常 - Normal
-
-> 用 - Use
-
-> 漢 - Chinese
-
-> 字 - Character
+``` 
+常 - Normal pronounced じょう/jō
+用 - Use pronounced よう/yō
+漢 - Chinese pronounced かん/kan
+字 - Character pronounced じ/ji
+```
 
 I've used various tools over time to help me with this task and the most helpful to me has been [Wanikani](wanikani.com).
 
