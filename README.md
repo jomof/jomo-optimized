@@ -3,7 +3,7 @@ Notes, ramblings and errata from the life of one engineer
 
 
 ## 2019-1-3 Machine Learning for Self Reflection
-I study Japanese as a hobby. I'm not good at it but it makes me happy and I find it relaxing. Over the recent holiday this hobby suddenly overlapped with my interest in machine learning when I realized ML can be used to model and visualize my own mental processeses. *The result is a kind of algorithmic introspection*. 
+I study Japanese as a hobby. I'm not good at it but it makes me happy and I find it relaxing. Over the recent holiday this hobby suddenly overlapped with my interest in machine learning when I realized ML can be used to model and visualize my own mental processeses. **The result is a kind of algorithmic introspection**. 
 
 This graph, which I explain below, shows a neural network as it learns to predict when I will forget particular facts I've learned about Japanese.
 
@@ -41,11 +41,11 @@ Each time you review the material the forgetting curve gets more shallow until e
 ### Quirks and Rough Edges
 > All models are wrong; some models are useful.
 > -George Box, 1976
+
 After more than a year with Wanikani I had become familiar with it's quirks and rough edges. 
 - Once it became convinced I had learned ("Burned") something completely it would stop quizzing me altogether. However, there were some that I knew I was going to forget later. 
 - On the other hand, I noticed sometimes when I was really bad on a particular case it would seem to give up. But I would have preferred to be quizzed more often so that I had a better chance of learning.
-
-Furthermo
+- The spacing between repititions seems to be a hard-coded increasing pattern. But surely my optimal spacing would be different from someone elses. For example, a native Chinese speaker may be able to go faster because they grew up in an environment with logographic characters.
 
 
 #### 2015-6-21 Some Matrix and Vector Functions
