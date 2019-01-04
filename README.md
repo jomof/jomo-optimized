@@ -1,6 +1,41 @@
 # Jomo Optimized
 Notes, ramblings and errata from the life of one engineer
 
+
+## 2019-1-3 Machine Learning for Self Reflection
+I study Japanese as a hobby. I'm not good at it but it makes me happy and I find it relaxing. Over the recent holiday this hobby suddenly overlapped with my interest in machine learning. And that overlap lead to this graphic which I will explain further down:
+
+![Wanikani ](120-1.h5.gif)
+
+### The Joy of Kanji
+Part of learning Japanese is the daunting task of memorizing the meanings of 2136 commonly used logographic characters known as jōyō kanji (常用漢字). For example,
+
+``` 
+常 - Normal pronounced じょう/jō
+用 - Use pronounced よう/yō
+漢 - Chinese pronounced かん/kan
+字 - Character pronounced じ/ji
+```
+
+I've used various tools over time to help me with this task and the most helpful to me has been [Wanikani](wanikani.com).
+This is basically a flashcard system where I am prompted with kanji and I'm required to write it's meaning or pronunciation.
+I've used Wanikani for more than a year and have learned nearly 1000 kanji to varying levels of competency. 
+
+### Spaced Repetition System (SRS)
+After a while I became curious about how Wanikani worked under the covers. 
+
+I could tell the system was trying to figure out some kind of good order. It often didn't quiz me on kanji that I knew pretty well and it quizzed me more often on the kanji that I struggled most with. If I struggled too much, it also seemed to give up on a particular kanji for a while and return to it later.
+
+How does Wanikani decide which kanji to test me on next? It is optimal in some way? 
+
+This led me to the personal discovery that there is a fairly sophisticated science behind this kind of thing. It's called SRS (Spaced Repitition System) if you want to search more about it. The main point is that when you learn something there is an increasing chance you will forget it over time.
+
+[Forgetting Curve](ForgettingCurve.svg)
+[[By The original uploader was Icez at English Wikipedia. - Originally from en.wikipedia; description page is/was here., Public Domain, https://commons.wikimedia.org/w/index.php?curid=2214107]]
+
+
+
+
 #### 2015-6-21 Some Matrix and Vector Functions
 Here is a function to create a vector and another to create a transposed vector in TypeScript
 ```typescript
