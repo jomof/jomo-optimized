@@ -47,7 +47,7 @@ After more than a year with Wanikani I had become familiar with it's quirks and 
 - On the other hand, I noticed sometimes when I was really bad on a particular case it would seem to give up. But I would have preferred to be quizzed more often so that I had a better chance of learning.
 - The spacing between repititions seems to be a hard-coded increasing pattern. But surely my optimal spacing would be different from someone elses. For example, a native Chinese speaker may be able to go faster because they grew up in an environment with logographic characters.
 
-### Are Other Models USeful?
+### Are Other Models Useful?
 I wondered about a different model of forgetting where there is a precise moment that you forget rather than a probability curve. 
 
 Maybe the curve in the forgetting curve model is about the model's uncertainty about whether you will remember something rather than an accurate reflection of the biological process of forgetting. 
