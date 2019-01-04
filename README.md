@@ -64,7 +64,24 @@ Instead, I tried this as the input to the model:
 
 ![Raw Data](kanji_quiz_inputs.gif)
 
-Where the output trained for is success[n].
+Where the output trained for is success[n]. 
+
+Some notes about the inputs:
+- I removed the kanji ID from the input set altogether. The reason is that I think it would help the model too much since the data are for a single person (me). If I had a lot of people's history I might be inclined to put it into the model. The other reason is that it would limit the usefulness of the model to me for future kanji.
+- Since this is a time-series there are a variable number of quizzes for each kanji. In fact, I had one kanji that I had quizzed 110 times and still hadn't learned!. I initially backfilled the remaining parts with zero but later found a way to improve on this.
+- A single input is constructed for each quiz (not each kanji) so the same data is repeated with for different time offsets. I was initially worried that this might help the model too much because the answers were embedded in the inputs. I don't think this turned out to be a problem because the resulting model is able to predict answers that it doesn't have access to.
+- The data is highly skewed in that I have about 90% success rate in answering quizzes. So initially, the model would just choose an answer close to .9. This wasn't helpful so I balanced the successes with the failures by duplicating the failures nine times.
+
+In the end, the input had size 60. I used a two layer neural network with 30 needs in the first layer and one node in the output layer. I was hoping for a smaller network but I found smaller one's didn't train as well.
+
+### Conclusion
+I think it worked in the sense that I have a network that can predict when I will forget a particular item given the history of that item. I'm still trying to figure out the right way to visualize the forgetting curve based on this model. I'll post it here when I do.
+
+To me, the eye opening thing is that I can model a part of my mental process and show it to you. Until now, I had thought my mind was a black box to anyone besides myself (and usually a black box even to me). I feel like this might lead somewhere interesting.
+
+
+
+
 
 
 #### 2015-6-21 Some Matrix and Vector Functions
