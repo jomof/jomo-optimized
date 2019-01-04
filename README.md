@@ -3,9 +3,11 @@ Notes, ramblings and errata from the life of one engineer
 
 
 ## 2019-1-3 Machine Learning for Self Reflection
-I study Japanese as a hobby. I'm not good at it but it makes me happy and I find it relaxing. Over the recent holiday this hobby suddenly overlapped with my interest in machine learning. And that overlap lead to this graphic which I will explain further down:
+I study Japanese as a hobby. I'm not good at it but it makes me happy and I find it relaxing. Over the recent holiday this hobby suddenly overlapped with my interest in machine learning when I realized ML can be used to model and visualize my own mental processeses. **The result is a kind of algorithmic introspection**. 
 
-![Wanikani ](120-1.h5.gif)
+This graph, which I explain below, shows a neural network as it learns to predict when I will forget particular facts I've learned about Japanese.
+
+![Wanikani](120-1.h5.gif)
 
 ### The Joy of Kanji
 Part of learning Japanese is the daunting task of memorizing the meanings of 2136 commonly used logographic characters known as jōyō kanji (常用漢字). For example,
@@ -24,16 +26,41 @@ I've used Wanikani for more than a year and have learned nearly 1000 kanji to va
 ### Spaced Repetition System (SRS)
 After a while I became curious about how Wanikani worked under the covers. 
 
-I could tell the system was trying to figure out some kind of good order. It often didn't quiz me on kanji that I knew pretty well and it quizzed me more often on the kanji that I struggled most with. If I struggled too much, it also seemed to give up on a particular kanji for a while and return to it later.
+I could tell the system was trying to figure out some kind of good order. It often didn't quiz me on kanji that I knew pretty well and it quizzed me more often on the kanji that I struggled most with. 
 
 How does Wanikani decide which kanji to test me on next? It is optimal in some way? 
 
-This led me to the personal discovery that there is a fairly sophisticated science behind this kind of thing. It's called SRS (Spaced Repitition System) if you want to search more about it. The main point is that when you learn something there is an increasing chance you will forget it over time.
+This led me to the personal discovery that there is a fairly sophisticated science behind this kind of thing. It's called SRS (Spaced Repitition System) if you want to search more about it. The main model they use is that when you learn something there is an increasing chance you will forget it over time.
 
-[Forgetting Curve](ForgettingCurve.svg)
-[[By The original uploader was Icez at English Wikipedia. - Originally from en.wikipedia; description page is/was here., Public Domain, https://commons.wikimedia.org/w/index.php?curid=2214107]]
+> ![Forgetting Curve](ForgettingCurve.svg)
 
+> _- uploaded by Icez at English Wikipedia, Public Domain_
 
+Each time you review the material the forgetting curve gets more shallow until eventually it will decay slowly enough to last the rest of your life. 
+
+### Quirks and Rough Edges
+> All models are wrong; some models are useful.
+> -George Box, 1976
+
+After more than a year with Wanikani I had become familiar with it's quirks and rough edges. 
+- Once it became convinced I had learned ("Burned") something completely it would stop quizzing me altogether. However, there were some that I knew I was going to forget later. 
+- On the other hand, I noticed sometimes when I was really bad on a particular case it would seem to give up. But I would have preferred to be quizzed more often so that I had a better chance of learning.
+- The spacing between repititions seems to be a hard-coded increasing pattern. But surely my optimal spacing would be different from someone elses. For example, a native Chinese speaker may be able to go faster because they grew up in an environment with logographic characters.
+
+### 
+I wondered about a different model of forgetting where there is a precise moment that you forget rather than a probability curve. 
+
+Maybe the curve in the forgetting curve model is about the model's uncertainty about whether you will remember something rather than an accurate reflection of the biological process of forgetting. 
+
+**I became curious about whether a neural network could learn the forgetting curve.**
+
+Wanikani is a great platform and it even has an API that you can use to query your quiz history. I used this to capture a set of tuples:
+![Raw Data](kanji_input_vector.gif)
+
+Since it is a time-series my first thought was to use LSTM to model it. Maybe this is possible but I couldn't figure it out. The problem I had is that LSTM is typically for fixed time windows but the time span between quizzes is variable.
+
+Instead, I tried this as the input to the model:
+![Raw Data](kanji_quiz_inputs.gif)
 
 
 #### 2015-6-21 Some Matrix and Vector Functions
