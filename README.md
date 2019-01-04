@@ -4,7 +4,7 @@ Notes, ramblings and errata from the life of one engineer
 
 #### 2019-1-3 Machine Learning for Self Reflection
 I study Japanese as a hobby. I'm not good at it but it makes me happy and helps me relax.
-Part of learning Japanese is the daunting task of memorizing the meanings of 2136 commonly used Kanji known as jōyō kanji (常用漢字)
+Part of learning Japanese is the daunting task of memorizing the meanings of 2136 commonly used logographic characters known as jōyō kanji (常用漢字).
 
 ![Wanikani ](120-1.h5.gif)
 
