@@ -33,8 +33,7 @@ How does Wanikani decide which kanji to test me on next? It is optimal in some w
 This led me to the personal discovery that there is a fairly sophisticated science behind this kind of thing. It's called SRS (Spaced Repitition System) if you want to search more about it. The main model they use is that when you learn something there is an increasing chance you will forget it over time.
 
 > ![Forgetting Curve](ForgettingCurve.svg)
-
-_- uploaded by Icez at English Wikipedia, Public Domain_
+> _- uploaded by Icez at English Wikipedia, Public Domain_
 
 Each time you review the material the forgetting curve gets more shallow until eventually it will decay slowly enough to last the rest of your life. 
 
