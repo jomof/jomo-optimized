@@ -55,11 +55,13 @@ Maybe the curve in the forgetting curve model is about the model's uncertainty a
 **I became curious about whether a neural network could learn the forgetting curve.**
 
 Wanikani is a great platform and it even has an API that you can use to query your quiz history. I used this to capture a set of tuples:
+
 ![Raw Data](kanji_input_vector.gif)
 
 Since it is a time-series my first thought was to use LSTM to model it. Maybe this is possible but I couldn't figure it out. The problem I had is that LSTM is typically for fixed time windows but the time span between quizzes is variable.
 
 Instead, I tried this as the input to the model:
+
 ![Raw Data](kanji_quiz_inputs.gif)
 
 
