@@ -47,6 +47,17 @@ After more than a year with Wanikani I had become familiar with it's quirks and 
 - On the other hand, I noticed sometimes when I was really bad on a particular case it would seem to give up. But I would have preferred to be quizzed more often so that I had a better chance of learning.
 - The spacing between repititions seems to be a hard-coded increasing pattern. But surely my optimal spacing would be different from someone elses. For example, a native Chinese speaker may be able to go faster because they grew up in an environment with logographic characters.
 
+### 
+I wondered about a different model of forgetting where there is a precise moment that you forget rather than a probability curve. 
+
+Maybe the curve in the forgetting curve model is about the model's uncertainty about whether you will remember something rather than an accurate reflection of the biological process of forgetting. 
+
+**I became curious about whether a neural network could learn the forgetting curve.**
+
+Wanikani is a great platform and it even has an API that you can use to query your quiz history. I used this to capture a set of tuples:
+
+
+
 
 #### 2015-6-21 Some Matrix and Vector Functions
 Here is a function to create a vector and another to create a transposed vector in TypeScript
