@@ -3,9 +3,7 @@ Notes, ramblings and errata from the life of one engineer
 
 
 ## 2019-1-3 Machine Learning for Self Reflection
-I study Japanese as a hobby. I'm not good at it but it makes me happy and I find it relaxing. Over the recent holiday this hobby suddenly overlapped with my interest in machine learning when I realized ML can be used to model and visualize my own mental processeses. The result is a kind of algorithmic introspection. 
-
-> The result is a kind of algorithmic introspection. 
+I study Japanese as a hobby. I'm not good at it but it makes me happy and I find it relaxing. Over the recent holiday this hobby suddenly overlapped with my interest in machine learning when I realized ML can be used to model and visualize my own mental processeses. *The result is a kind of algorithmic introspection*. 
 
 This graph, which I explain below, shows a neural network as it learns to predict when I will forget particular facts I've learned about Japanese.
 
@@ -36,10 +34,13 @@ This led me to the personal discovery that there is a fairly sophisticated scien
 
 ![Forgetting Curve](ForgettingCurve.svg)
 
-_uploaded by Icez at English Wikipedia, Public Domain_
+_- uploaded by Icez at English Wikipedia, Public Domain_
 
-Each time you review the material the forgetting curve gets more shallow until eventually it will decay slowly enough to last the rest of your life.
+Each time you review the material the forgetting curve gets more shallow until eventually it will decay slowly enough to last the rest of your life. 
 
+### A Different Model of Forgetting
+> All models are wrong; some models are useful
+_-George Box, 1976_
 
 
 #### 2015-6-21 Some Matrix and Vector Functions
